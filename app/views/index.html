@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Courses</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  </head>
+  <body>
+
+    <div class='container'>
+      <div id='wrapper'>
+        <div class='row'>
+          <div class='col-md-6' style='text-align:left'>
+            <h2>Add a new course</h2>
+            <form action='/courses/course' method='post'>
+              Name:<input type='text' name='name'><br>
+              Description:<textarea type='text' name='description'></textarea><br>
+              <input type='submit' value='Submit'>
+            </form>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col-md-12'>
+            <h2>Courses</h2>
+            <div class='table-responsive'>
+              <table class='table table-striped'>
+                <thead>
+                  <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                {% for course in all_courses %}
+                <tbody>
+                  <tr>
+                    <td>{{ course['name'] }}</td>
+                    <td>{{ course['description'] }}</td>
+                    <td>{{ course['created_at'] }}</td>
+                    <td><a href='/courses/{{course['id']}}'>remove</a></td>
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
